@@ -1,39 +1,53 @@
-# Speech Recognition Script
+# mp3-to-text
 
-This simple Python script utilizes the SpeechRecognition library to transcribe speech from an audio file and appends the transcribed text to a data file.
+## Описание
+Программа для автоматической транскрипции аудиофайлов в текст. Принимает на вход MP3-файл, конвертирует его в WAV и распознаёт речь с использованием Google Speech Recognition.
 
-## Prerequisites
+## Возможности
+- Автоматическая загрузка и установка FFmpeg
+- Конвертация MP3 в WAV
+- Разбиение аудиофайла на части и их обработка
+- Распознавание речи с использованием Google Speech Recognition
+- Сохранение транскрибированного текста в файл
 
-Before running the script, ensure that you have the following prerequisites installed:
+## Установка
+### 1. Установка зависимостей
+Перед использованием необходимо установить зависимости:
 
-- Python (https://www.python.org/)
-- SpeechRecognition library (`pip install SpeechRecognition`)
+```sh
+pip install -r requirements.txt
+```
 
-## Usage
+## Использование
+Запуск программы выполняется через командную строку:
 
-1. Save your audio file (in WAV format) to a location on your machine.
-2. Update the script with the correct path to your audio file.
+```sh
+python app.py C:/path/to/audio.mp3 [C:/path/to/output.txt]
+```
 
-    ```python
-    with sr.AudioFile("path/to/your/audio/file.wav") as source:
-    ```
+- `C:/path/to/audio.mp3` — путь к входному MP3-файлу.
+- `[C:/path/to/output.txt]` — (необязательно) путь для сохранения распознанного текста.
 
-3. Run the script:
+Если путь к файлу вывода не указан, программа создаст файл в папке `results`.
 
-    ```bash
-    python main.py
-    ```
+## Пример работы
+```sh
+python app.py example.mp3
+```
+Выходной файл с текстом будет сохранён в `results/example.txt`.
 
-4. The script will transcribe the speech from the audio file using the Google Speech Recognition API and append the transcribed text to the `data.txt` file.
+## Возможные ошибки и их решения
+### FFmpeg не установлен
+Программа автоматически загружает и устанавливает FFmpeg, но если этого не произошло, попробуйте установить его вручную и добавить в переменную среды `PATH`.
 
-## Note
+### Ошибка запроса к сервису распознавания
+- Проверьте подключение к интернету.
+- Попробуйте выполнить программу позже, так как сервис Google может временно недоступен.
 
-Make sure to replace `"path/to/your/audio/file.wav"` with the actual path to your audio file.
+### Аудиофайл не распознаётся
+- Убедитесь, что качество записи хорошее.
+- Проверьте, что язык аудиофайла совпадает с указанным в коде (`ru-RU`).
 
-## Dependencies
+## Лицензия
+Этот проект распространяется под лицензией MIT.
 
-- [SpeechRecognition](https://pypi.org/project/SpeechRecognition/)
-
-## License
-
-This project is licensed under the [MIT](https://choosealicense.com/licenses/mit/) License.
